@@ -1,23 +1,22 @@
-import {createAsyncThunk, createSlice, nanoid} from '@reduxjs/toolkit'
-import AxiosGetPosts from "../../api/AxiosGetPosts";
+import { createAsyncThunk, createSlice, nanoid } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const dataReactions = {
-    heart: 0,
-    smile: 0,
-    boom: 0,
-    poo: 0
-}
+  heart: 0,
+  smile: 0,
+  boom: 0,
+  poo: 0,
+};
 
 const initialState = {
-    data: [],
-    status: 'idle'
-}
+  data: [],
+  status: "idle",
+};
 
-export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
-    const response = await axios.get('http://localhost:3001/posts')
-    return response.data
-})
+export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
+  const response = await axios.get("http://localhost:3001/posts");
+  return response.data;
+});
 
 // const initialState = [
 //     {
@@ -54,52 +53,49 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
 // ]
 
 const postSlice = createSlice({
-    name: 'posts',
-    initialState,
-    reducers: {
-        PostAdded: {
-            reducer(state, action) {
-                state.data.push(action.payload)
-            },
-            prepare(title, content, userId) {
-                return {
-                    payload: {
-                        id: nanoid(),
-                        date: new Date().toISOString(),
-                        reactions: dataReactions,
-                        title,
-                        content,
-                        userId
-                    }
-                }
-            }
-        },
-        PostUpdated(state, action) {
-            const { id, title, content } = action.payload
-            const existingPost = state.data.find(post =>
-                post.id === id
-            )
-            existingPost.title = title
-            existingPost.content = content
-        },
-        reactionAdded(state, action) {
-            const { postId, reaction } = action.payload
-            const existingPost = state.data.find(post =>
-                post.id === postId
-            )
-            if (existingPost) {
-                existingPost.reactions[reaction]++
-            }
-        }
-    }
-})
-export const selectAllPosts = state => state.posts.data
-export const selectPostById = (state, postId) => state.posts.data.find(post => post.id === postId)
+  name: "posts",
+  initialState,
+  reducers: {
+    PostAdded: {
+      reducer(state, action) {
+        state.data.push(action.payload);
+      },
+      prepare(title, content, userId) {
+        return {
+          payload: {
+            id: nanoid(),
+            date: new Date().toISOString(),
+            reactions: dataReactions,
+            title,
+            content,
+            userId,
+          },
+        };
+      },
+    },
+    PostUpdated(state, action) {
+      const { id, title, content } = action.payload;
+      const existingPost = state.data.find((post) => post.id === id);
+      existingPost.title = title;
+      existingPost.content = content;
+    },
+    reactionAdded(state, action) {
+      const { postId, reaction } = action.payload;
+      const existingPost = state.data.find((post) => post.id === postId);
+      if (existingPost) {
+        existingPost.reactions[reaction]++;
+      }
+    },
+  },
+});
+export const selectAllPosts = (state) => state.posts.data;
+export const selectPostById = (state, postId) =>
+  state.posts.data.find((post) => post.id === postId);
 
 // export const getPosts = () => {
 //     const buff = AxiosGetPosts()
 //     initialState.data = buff
 // }
 
-export const { PostAdded, PostUpdated, reactionAdded } = postSlice.actions
-export default postSlice.reducer
+export const { PostAdded, PostUpdated, reactionAdded } = postSlice.actions;
+export default postSlice.reducer;
