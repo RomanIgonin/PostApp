@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export const PostStyle = StyleSheet.create({
+export const PostsListStyle = StyleSheet.create({
     main: {
         flex: 1,
         backgroundColor: '#000a15',

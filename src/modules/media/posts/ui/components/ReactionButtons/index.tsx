@@ -19,7 +19,7 @@ export const ReactionButtons = ({ post }) => {
                 <Pressable
                     onPress={() =>
                         dispatch(reactionAdded({postId: post.id, reaction: name}))
-                }>
+                    }>
                     <View style={{
                         flexDirection: 'row',
                         alignItems: 'center',

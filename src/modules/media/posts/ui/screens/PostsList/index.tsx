@@ -1,30 +1,26 @@
 // Визуальная часть пост листа
 import React, {FlatList, Pressable, SafeAreaView, Text, View} from 'react-native'
 import {useDispatch, useSelector} from 'react-redux'
-import AddPostForm from "./AddPostForm";
-import AxiosGetPosts from "../../api/AxiosGetPosts"
-import { AuthorPost } from "../users/AuthorPost";
-import { AddPostStyle } from "../../styles/AddPostStyle";
-import { PostStyle } from "../../styles/PostStyle";
+import AddPostForm from "../AddPost/index";
+import { AuthorPost } from "../../../../../users/ui/components/AuthorPost/index";
+import { AddPostStyle } from "../AddPost/styles";
+import { PostsListStyle } from "./styles";
 import {useEffect, useState} from "react";
-import {TimeAgo} from "./TimeAgo";
-import {ReactionButtons} from "./ReactionButtons";
-import {fetchPosts, selectAllPosts} from "./PostsSlice"
+import {TimeAgo} from "../../components/TimeAgo/index";
+import {ReactionButtons} from "../../components/ReactionButtons/index";
+import {selectAllPosts, selectPostsLoad} from "../../../store/index"
+import {loadPosts} from "../../../store/action";
 
 export default function PostsList({ navigation }) {
     const posts = useSelector(selectAllPosts)
-    // const [viewAddPostForm, setViewAddPostForm] = useState(false)
-    // const posts = AxiosGetPosts()
-
-    const postStatus = useSelector(state => state.posts.status)
-
+    const isPostsLoading = useSelector(selectPostsLoad)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (postStatus === 'idle') {
-            dispatch(fetchPosts())
+        if (isPostsLoading === true) {
+            dispatch(loadPosts())
         }
-    }, [postStatus, dispatch])
+    }, [isPostsLoading, dispatch])
 
     const onPostPressed = (item) => {
         navigation.navigate('SinglePostPage', { id: item.id, title: item.title})
@@ -41,14 +37,14 @@ export default function PostsList({ navigation }) {
 
     const renderItem = ({item}) => {
         return (
-            <View style={PostStyle.mainTitle}>
+            <View style={PostsListStyle.mainTitle}>
                 <Pressable onPress={() => onPostPressed(item)}>
                     <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                         <AuthorPost postId={item.userId} />
                         <TimeAgo timestamp={item.date}/>
                     </View>
-                    <Text style={PostStyle.postTitle}>{item.title}</Text>
-                    <Text style={PostStyle.postContent}>{item.content}</Text>
+                    <Text style={PostsListStyle.postTitle}>{item.title}</Text>
+                    <Text style={PostsListStyle.postContent}>{item.content}</Text>
                     <ReactionButtons post={item}/>
                 </Pressable>
             </View>
@@ -66,7 +62,7 @@ export default function PostsList({ navigation }) {
     }
 
     return(
-        <View style={PostStyle.main}>
+        <View style={PostsListStyle.main}>
             <AddPostButton />
             <FlatList
                 data={orderedPosts}

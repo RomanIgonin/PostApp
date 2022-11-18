@@ -1,7 +1,7 @@
 // создает экземпляр магазина Redux
 import { configureStore } from '@reduxjs/toolkit'
-import postsReducer from '../features/posts/PostsSlice'
-import usersReducer from '../features/users/UsersSlice'
+import postsReducer from '../media/posts/PostsSlice'
+import usersReducer from '../users/UsersSlice'
 
 export default configureStore({
     reducer: {

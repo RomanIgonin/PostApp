@@ -11,10 +11,10 @@ import {
     TouchableOpacity,
     View
 } from "react-native";
-import {AddPostStyle} from "../../styles/AddPostStyle";
+import {AddPostStyle} from "../../../../../styles/AddPostStyle";
 import {useDispatch, useSelector} from "react-redux";
-import { PostAdded } from "./PostsSlice";
-import Dropdown from "../../components/Dropdown";
+import { PostAdded } from "../../../PostsSlice";
+import Dropdown from "../../../../../components/Dropdown";
 
 export default function AddPostForm({ navigation }) {
     const [title, setTitle] = useState('')

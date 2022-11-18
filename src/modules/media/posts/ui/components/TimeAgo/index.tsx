@@ -2,6 +2,7 @@ import React from 'react'
 import { parseISO, formatDistanceToNow } from 'date-fns'
 import { Text } from "react-native";
 import { StyleSheet } from "react-native";
+import {styleTimeAgo} from "./styles";
 
 export const TimeAgo = ({ timestamp }) => {
     let timeAgo = ''
@@ -14,13 +15,3 @@ export const TimeAgo = ({ timestamp }) => {
         <Text style={styleTimeAgo.main}>{timeAgo}</Text>
     )
 }
-
-export const styleTimeAgo = StyleSheet.create({
-    main: {
-        fontSize: 12,
-        color: 'silver',
-        marginRight: 10,
-        alignSelf: 'center',
-        fontStyle: 'italic'
-    }
-})

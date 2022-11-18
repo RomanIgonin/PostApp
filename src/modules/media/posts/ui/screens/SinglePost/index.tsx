@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import { useSelector } from "react-redux";
 import {Button, Text, TouchableOpacity, View} from "react-native";
-import {AuthorPost} from "../users/AuthorPost";
+import {AuthorPost} from "../../users/AuthorPost";
 import { AntDesign } from '@expo/vector-icons';
 import { SinglePostPageStyle } from "../../styles/SinglePostPageStyle";
 
