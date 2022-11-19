@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import {
     Alert,
     Button,
@@ -11,10 +11,10 @@ import {
     TouchableOpacity,
     View
 } from "react-native";
-import {AddPostStyle} from "../../../../../styles/AddPostStyle";
-import {useDispatch, useSelector} from "react-redux";
-import { PostAdded } from "../../../PostsSlice";
-import Dropdown from "../../../../../components/Dropdown";
+import { AddPostStyle } from "../AddPost/styles";
+import { useDispatch, useSelector } from "react-redux";
+import { PostAdded } from "../../../store/index";
+import Dropdown from "../../components/Dropdown/index";
 
 export default function AddPostForm({ navigation }) {
     const [title, setTitle] = useState('')

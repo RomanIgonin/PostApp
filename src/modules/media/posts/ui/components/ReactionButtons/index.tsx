@@ -1,7 +1,7 @@
 import React from 'react'
-import {FlatList, Pressable, Text, View} from "react-native";
-import {reactionAdded} from "./PostsSlice";
-import {useDispatch} from "react-redux";
+import { Pressable, Text, View } from "react-native";
+import { reactionAdded } from "../../../store/index";
+import { useDispatch } from "react-redux";
 
 const reactionEmoji = {
     heart: '❤️',
@@ -39,7 +39,7 @@ export const ReactionButtons = ({ post }) => {
                                 fontSize: 12,
                             }}
                         >
-                            {post.reactions[name]}
+                            {/*{post.reactions[name]}*/}
                         </Text>
                     </View>
                 </Pressable>

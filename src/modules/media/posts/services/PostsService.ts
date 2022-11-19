@@ -3,7 +3,8 @@ import axios from "axios";
 class PostsService {
     public async getPosts() {
         return axios
-            .get("http://localhost:3001/posts")
+            .get("https://jsonplaceholder.typicode.com/posts")
+            // .get("http://localhost:3001/posts")
             .then((response) => response.data);
     }
 }

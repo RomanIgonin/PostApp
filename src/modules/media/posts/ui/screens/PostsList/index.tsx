@@ -17,10 +17,11 @@ export default function PostsList({ navigation }) {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (isPostsLoading === true) {
+        // if (isPostsLoading === false) {
             dispatch(loadPosts())
-        }
-    }, [isPostsLoading, dispatch])
+        // }
+    }, [])
+    // }, [isPostsLoading, dispatch])
 
     const onPostPressed = (item) => {
         navigation.navigate('SinglePostPage', { id: item.id, title: item.title})
@@ -31,7 +32,7 @@ export default function PostsList({ navigation }) {
     }
 
     // Sort posts in reverse chronological order by datetime string
-    const orderedPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date))
+    // const orderedPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date))
 
     const keyExtractor = (item) => item.id;
 
@@ -40,11 +41,12 @@ export default function PostsList({ navigation }) {
             <View style={PostsListStyle.mainTitle}>
                 <Pressable onPress={() => onPostPressed(item)}>
                     <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                        <AuthorPost postId={item.userId} />
-                        <TimeAgo timestamp={item.date}/>
+                        {/*<AuthorPost postId={item.userId} />*/}
+                        {/*<TimeAgo timestamp={item.date}/>*/}
                     </View>
                     <Text style={PostsListStyle.postTitle}>{item.title}</Text>
-                    <Text style={PostsListStyle.postContent}>{item.content}</Text>
+                    <Text style={PostsListStyle.postContent}>{item.body}</Text>
+                    {/*<Text style={PostsListStyle.postContent}>{item.content}</Text>*/}
                     <ReactionButtons post={item}/>
                 </Pressable>
             </View>
@@ -65,7 +67,8 @@ export default function PostsList({ navigation }) {
         <View style={PostsListStyle.main}>
             <AddPostButton />
             <FlatList
-                data={orderedPosts}
+                // data={orderedPosts}
+                data={posts}
                 keyExtractor={keyExtractor}
                 renderItem={renderItem}
             />

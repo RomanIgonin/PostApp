@@ -1,10 +1,8 @@
-import {Button, FlatList, Pressable, Text, View} from "react-native";
-import React, {useState} from "react";
-import {DropdownStyle} from "../styles/DropdownStyle";
-import {AddPostStyle} from "../styles/AddPostStyle";
+import { FlatList, Pressable, Text, View } from "react-native";
+import React, { useState } from "react";
+import { DropdownStyle } from "../Dropdown/styles";
 
-
-export default function Dropdown({data, getUserId}) {
+export default function Dropdown({ data, getUserId }) {
 
     const [openFlatList, setOpenFlatList] = useState(false)
     const [userName, setUserName] = useState('—')

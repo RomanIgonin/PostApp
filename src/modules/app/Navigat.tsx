@@ -2,10 +2,10 @@
 // Стек навигация по приложению. Подключение всех страниц приложения сюда
 import * as React from "react";
 
-import PostsList from "../media/posts/PostsList";
-import SinglePostPage from "../media/posts/SinglePostPage";
-import EditPostForm from "../media/posts/EditPostForm";
-import AddPostForm from "../media/posts/ui/screens/AddPost/AddPostForm";
+import PostsList from "../media/posts/ui/screens/PostsList/index";
+import SinglePostPage from "../media/posts/ui/screens/SinglePost/index";
+import EditPostForm from "../media/posts/ui/screens/EditPost/index";
+import AddPostForm from "../media/posts/ui/screens/AddPost/index";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";

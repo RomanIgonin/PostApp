@@ -1,10 +1,10 @@
 import * as React from 'react'
-import {useDispatch, useSelector} from "react-redux";
-import {Button, Keyboard, Text, TextInput, TouchableOpacity, View, Alert} from "react-native";
-import {useState} from "react";
-import {AddPostStyle} from "../../styles/AddPostStyle";
-import {PostAdded, PostUpdated, selectPostById} from "./PostsSlice";
-import {EditPostFormStyle} from "../../styles/EditPostFormStyle";
+import { useDispatch, useSelector } from "react-redux";
+import { Keyboard, Text, TextInput, TouchableOpacity, View, Alert } from "react-native";
+import { useState } from "react";
+import { AddPostStyle } from "../AddPost/styles";
+import { PostAdded, PostUpdated, selectPostById } from "../../../store/index";
+import { EditPostFormStyle } from "../EditPost/styles";
 
 export default function EditPostForm({ route, navigation }) {
     const postId = route.params.id

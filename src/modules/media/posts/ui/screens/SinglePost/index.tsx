@@ -1,15 +1,13 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import { useSelector } from "react-redux";
-import {Button, Text, TouchableOpacity, View} from "react-native";
-import {AuthorPost} from "../../users/AuthorPost";
+import { Text, TouchableOpacity, View } from "react-native";
+import { AuthorPost } from "../../../../../users/ui/components/AuthorPost/index";
 import { AntDesign } from '@expo/vector-icons';
-import { SinglePostPageStyle } from "../../styles/SinglePostPageStyle";
+import { SinglePostPageStyle } from "../SinglePost/styles";
+import { PostsListStyle } from "../PostsList/styles";
+import { AddPostStyle } from "../AddPost/styles";
 
-import {PostStyle} from "../../styles/PostStyle";
-import {EditPostFormStyle} from "../../styles/EditPostFormStyle";
-import {AddPostStyle} from "../../styles/AddPostStyle";
-
-export default function SinglePostPage({route, navigation, props}) {
+export default function SinglePostPage({ route, navigation, props }) {
     const id = route.params.id
 
     const post = useSelector(state =>
@@ -45,8 +43,8 @@ export default function SinglePostPage({route, navigation, props}) {
                         onPress={() => goToEditPostForm(post)}
                     />
                 </View>
-                <Text style={PostStyle.postTitle}>{post.title}</Text>
-                <Text style={PostStyle.postContent}>{post.content}</Text>
+                <Text style={PostsListStyle.postTitle}>{post.title}</Text>
+                <Text style={PostsListStyle.postContent}>{post.content}</Text>
                 <View style={SinglePostPageStyle.backBtn}>
                     <TouchableOpacity onPress={onClosePressed}>
                         <Text style={AddPostStyle.fontButton}>Back</Text>

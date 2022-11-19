@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Text } from "react-native";
-import { usersSelector } from "../../../store/selectors;
+import { usersSelector } from "../../../store/selectors";
 
 export const AuthorPost = ({ postId }) => {
   const users = useSelector(usersSelector);
@@ -18,7 +18,7 @@ export const AuthorPost = ({ postId }) => {
       }}
       //Попробуй использовать emotion-js для стилей
     >
-      {users[0].name}
+      {users.name}
     </Text>
   );
 };

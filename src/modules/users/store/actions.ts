@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import usersService from "../../api/AxiosGetUsers";
+import usersService from "../services/UsersService";
 
 const PREFIX = "users";
 
