@@ -8,3 +8,9 @@
 5. Как добавить стиль к уже написанному в style={{ ...AddPostStyle.addButton}, { ...}}
 6. Сдвиуть X Close у Who posts? в право, на место нее поиск по именам
 7. Изучить классы
+8. Передача ip адреса в package.json файл для запуска локального сервера
+9. Попробуй использовать emotion-js для стилей
+10. переделать все селекторы через createSelector
+11. исправить иконку edit
+
+//    "server": "json-server --watch src/modules/api/db.json -p 3001",

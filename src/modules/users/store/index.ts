@@ -1,6 +1,6 @@
-import { createAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import AxiosGetUsers from "../../api/AxiosGetPosts";
+import { createSlice } from "@reduxjs/toolkit";
 import { loadUsers } from "./actions";
+import { useSelector } from "react-redux";
 
 type State = {
   users: any[];
@@ -29,5 +29,8 @@ const usersSlice = createSlice({
     });
   },
 });
+
+export const selectUserById = (state, userId) =>
+  state.users.users.find((user) => user.userId === userId);
 
 export default usersSlice.reducer;

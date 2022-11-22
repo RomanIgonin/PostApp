@@ -1,12 +1,25 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Text } from "react-native";
 import { usersSelector } from "../../../store/selectors";
+import { selectPostById } from "../../../../media/posts/store";
+import { loadUsers } from "../../../store/actions";
+import { selectUserById } from "../../../store";
 
-export const AuthorPost = ({ postId }) => {
-  const users = useSelector(usersSelector);
+// interface props {
+//   userId: Number;
+// }
 
-  console.log(users); //массив из стейта редакс
+export const AuthorPost = ({ userId }) => {
+  const user = useSelector((state) => selectUserById(state, userId));
+  // const dispatch = useDispatch();
+  // const isUsersLoading = useSelector((state) => state.users.isUsersLoading);
+
+  // useEffect(() => {
+  //   if (isUsersLoading === false) {
+  //     dispatch(loadUsers());
+  //   }
+  // }, [isUsersLoading, dispatch]);
 
   return (
     <Text
@@ -18,7 +31,7 @@ export const AuthorPost = ({ postId }) => {
       }}
       //Попробуй использовать emotion-js для стилей
     >
-      {users.name}
+      {user.name}
     </Text>
   );
 };

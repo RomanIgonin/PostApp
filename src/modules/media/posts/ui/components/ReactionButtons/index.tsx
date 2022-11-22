@@ -1,54 +1,40 @@
-import React from 'react'
-import { Pressable, Text, View } from "react-native";
+import React from "react";
+import { Button, Pressable, Text, View } from "react-native";
 import { reactionAdded } from "../../../store/index";
 import { useDispatch } from "react-redux";
+import { ReactionButtonStyle } from "./styles";
+import { nanoid } from "@reduxjs/toolkit";
 
 const reactionEmoji = {
-    heart: '❤️',
-    smile: '😄',
-    boom: '🤯',
-    poo: '💩',
-}
+  heart: "❤️",
+  smile: "😄",
+  boom: "🤯",
+  poo: "💩",
+};
 
 export const ReactionButtons = ({ post }) => {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-    const reactionButtons = Object.entries(reactionEmoji).map(([name, emoji]) => {
-        return (
-            <View style={{marginHorizontal: 5, marginVertical: 10,}}>
-                <Pressable
-                    onPress={() =>
-                        dispatch(reactionAdded({postId: post.id, reaction: name}))
-                    }>
-                    <View style={{
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        borderRadius: 5,
-                        backgroundColor: 'rgba(15,56,84,0.78)',
-                        height: 25,
-                        width: 45,
-                    }}>
-                        <Text>{emoji}</Text>
-                        <Text
-                            style={{
-                                alignSelf: 'center',
-                                color: 'silver',
-                                marginLeft: 5,
-                                fontWeight: 'bold',
-                                fontSize: 12,
-                            }}
-                        >
-                            {/*{post.reactions[name]}*/}
-                        </Text>
-                    </View>
-                </Pressable>
-            </View>
-        )
-    })
+  const reactionButtons = Object.entries(reactionEmoji).map(([name, emoji]) => {
+    const postId = post.id;
+    // console.log(name);
     return (
-        <View style={{flexDirection: 'row'}}>
-            {reactionButtons}
-        </View>
-    )
-}
+      <View key={nanoid()} style={ReactionButtonStyle.oneButton}>
+        <Pressable
+          onPress={
+            () => dispatch(reactionAdded({ postId: postId, reaction: name }))
+            // dispatch(reactionAdded({ postId, name }))
+          }
+        >
+          <View style={ReactionButtonStyle.main}>
+            <Text>{emoji}</Text>
+            <Text style={ReactionButtonStyle.text}>{post.reactions[name]}</Text>
+            {/*<Text style={ReactionButtonStyle.text}>{countReactions}</Text>*/}
+          </View>
+        </Pressable>
+      </View>
+    );
+  });
+
+  return <View style={{ flexDirection: "row" }}>{reactionButtons}</View>;
+};

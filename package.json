@@ -6,7 +6,7 @@
   "scripts": {
     "go": "concurrently \"npm run start\" \"npm run server\"",
     "start": "react-native start",
-    "server": "json-server --watch src/modules/api/db.json -p 3001",
+    "server": "json-server --host 192.168.8.112 -p 3001 src/modules/api/db.json",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "test": "jest",
