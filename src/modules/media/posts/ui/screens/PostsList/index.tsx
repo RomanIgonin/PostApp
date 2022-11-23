@@ -6,37 +6,35 @@ import React, {
   Text,
   View,
 } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import AddPostForm from "../AddPost/index";
 import { AuthorPost } from "../../../../../users/ui/components/AuthorPost/index";
-import { AddPostStyle } from "../AddPost/styles";
 import { PostsListStyle } from "./styles";
 import { useEffect, useState } from "react";
 import { TimeAgo } from "../../components/TimeAgo/index";
 import { ReactionButtons } from "../../components/ReactionButtons/index";
-import { selectAllPosts, selectPostsLoad } from "../../../store/index";
+import {
+  selectAllPosts,
+  selectPostsLoad,
+  selectRefreshPosts,
+} from "../../../store/index";
 import { loadPosts } from "../../../store/action";
 import AddPostButton from "../../components/AddPostButton/index";
+import { useAppDispatch, useAppSelector } from "../../../../../hook";
 
 export default function PostsList({ navigation }) {
-  const posts = useSelector(selectAllPosts);
-  const isPostsLoading = useSelector(selectPostsLoad);
-  const dispatch = useDispatch();
+  const posts = useAppSelector(selectAllPosts);
+  const isPostsLoading = useAppSelector(selectPostsLoad);
+  const refreshPosts = useAppSelector(selectRefreshPosts);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (isPostsLoading === false) {
       dispatch(loadPosts());
     }
-    // }, [])
-  }, [isPostsLoading, dispatch]);
+  }, [refreshPosts]);
 
   const onPostPressed = (item) => {
     navigation.navigate("SinglePostPage", { postId: item.id });
   };
-
-  // const onAddPostPressed = () => {
-  //   navigation.navigate("AddPostForm");
-  // };
 
   // Sort posts in reverse chronological order by datetime string
   // const orderedPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date))
@@ -60,16 +58,6 @@ export default function PostsList({ navigation }) {
       </View>
     );
   };
-
-  // const AddPostButton = () => {
-  //   return (
-  //     <View style={AddPostStyle.addPostButton}>
-  //       <Pressable onPress={onAddPostPressed}>
-  //         <Text style={AddPostStyle.fontButton}>Add Post</Text>
-  //       </Pressable>
-  //     </View>
-  //   );
-  // };
 
   return (
     <View style={PostsListStyle.main}>

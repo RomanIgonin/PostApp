@@ -30,7 +30,6 @@ export default function AddPostForm({ navigation }) {
   const getUserId = (value) => {
     // забирает из Dropdown userId
     setUserId(value);
-    console.log(userId);
   };
 
   const onSavePostPressed = () => {
@@ -40,7 +39,7 @@ export default function AddPostForm({ navigation }) {
       setContent("");
       onClosePressed();
     } else {
-      alert("Enter the title, content & select user");
+      Alert.alert("Enter the title, content & select user");
     }
   };
 

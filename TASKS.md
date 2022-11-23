@@ -12,5 +12,6 @@
 9. Попробуй использовать emotion-js для стилей
 10. переделать все селекторы через createSelector
 11. исправить иконку edit
+12. Для каждого редусера создавать extraReducers с тремя кейсами?
 
 //    "server": "json-server --watch src/modules/api/db.json -p 3001",

@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { loadUsers } from "./actions";
 import { useSelector } from "react-redux";
+import { RootState } from "../../app/Store";
 
 type State = {
   users: any[];
@@ -30,7 +31,7 @@ const usersSlice = createSlice({
   },
 });
 
-export const selectUserById = (state, userId) =>
+export const selectUserById = (state: RootState, userId: Number) =>
   state.users.users.find((user) => user.userId === userId);
 
 export default usersSlice.reducer;

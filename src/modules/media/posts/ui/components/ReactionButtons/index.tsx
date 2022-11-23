@@ -4,6 +4,11 @@ import { reactionAdded } from "../../../store/index";
 import { useDispatch } from "react-redux";
 import { ReactionButtonStyle } from "./styles";
 import { nanoid } from "@reduxjs/toolkit";
+import { useAppDispatch } from "../../../../../hook";
+
+interface Props {
+  post: object;
+}
 
 const reactionEmoji = {
   heart: "❤️",
@@ -12,19 +17,18 @@ const reactionEmoji = {
   poo: "💩",
 };
 
-export const ReactionButtons = ({ post }) => {
-  const dispatch = useDispatch();
+export const ReactionButtons: React.FC<Props> = ({ post }) => {
+  const dispatch = useAppDispatch();
 
   const reactionButtons = Object.entries(reactionEmoji).map(([name, emoji]) => {
     const postId = post.id;
-    // console.log(name);
+    // console.log(postId);
     return (
       <View key={nanoid()} style={ReactionButtonStyle.oneButton}>
         <Pressable
-          onPress={
-            () => dispatch(reactionAdded({ postId: postId, reaction: name }))
-            // dispatch(reactionAdded({ postId, name }))
-          }
+          onPress={() => {
+            dispatch(reactionAdded({ postId: postId, reaction: name }));
+          }}
         >
           <View style={ReactionButtonStyle.main}>
             <Text>{emoji}</Text>
