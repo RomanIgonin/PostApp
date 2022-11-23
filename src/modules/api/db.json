@@ -1,162 +1,33 @@
 {
   "posts": [
-    {
-      "id": 111022,
-      "date": "2022-10-28T14:48:00.000Z",
-      "reactions": {
-        "heart": 0,
-        "smile": 0,
-        "boom": 0,
-        "poo": 0
+    "posts": [
+      {
+        "id": 111022,
+        "date": "2022-10-28T14:48:00.000Z",
+        "reactions": {
+          "heart": 0,
+          "smile": 0,
+          "boom": 0,
+          "poo": 0
+        },
+        "title": "SafeAreaView",
+        "content": "  The purpose of SafeAreaView is to render content within the safe area boundaries of a device. It is currently only applicable to iOS devices with iOS version 11 or later.\n\nSafeAreaView renders nested content and automatically applies padding to reflect the portion of the view that is not covered by navigation bars, tab bars, toolbars, and other ancestor views. Moreover, and most importantly, Safe Area s paddings reflect the physical limitation of the screen, such as rounded corners or camera notches (i.e. the sensor housing area on iPhone 13).",
+        "userId": 3
       },
-      "title": "SafeAreaView",
-      "content": "  The purpose of SafeAreaView is to render content within the safe area boundaries of a device. It is currently only applicable to iOS devices with iOS version 11 or later.\n\nSafeAreaView renders nested content and automatically applies padding to reflect the portion of the view that is not covered by navigation bars, tab bars, toolbars, and other ancestor views. Moreover, and most importantly, Safe Area s paddings reflect the physical limitation of the screen, such as rounded corners or camera notches (i.e. the sensor housing area on iPhone 13).",
-      "userId": 3
-    },
-    {
-      "id": 211022,
-      "date": "2022-10-29T19:18:00.000Z",
-      "reactions": {
-        "heart": 0,
-        "smile": 0,
-        "boom": 0,
-        "poo": 0
-      },
-      "title": "Flat List",
-      "content": "  A performant interface for rendering basic, flat lists, supporting the most handy features:\n\n\t- Fully cross-platform.\n\t- Optional horizontal mode.\n\t- Configurable viewability callbacks.\n\t- Header support.\n\t- Footer support.\n\t- Separator support.\n\t- Pull to Refresh.\n\t- Scroll loading.\n\t- ScrollToIndex support.\n\t- Multiple column support.\n\n\tIf you need section support, use <SectionList>.",
-      "userId": 4
-    },
-    {
-      "id": "MixSX0GS-MGNPrWPCzc3c",
-      "date": "2022-11-23T07:16:10.192Z",
-      "reactions": {
-        "heart": 0,
-        "smile": 0,
-        "boom": 0,
-        "poo": 0
-      },
-      "title": "Один",
-      "content": "Алалал",
-      "userId": 1
-    },
-    {
-      "id": "daMyx35hPG2zgipji7omd",
-      "date": "2022-11-23T07:18:10.115Z",
-      "reactions": {
-        "heart": 0,
-        "smile": 0,
-        "boom": 0,
-        "poo": 0
-      },
-      "title": "Два",
-      "content": "Влада",
-      "userId": 3
-    },
-    {
-      "id": "gd_9Fb1P1pnCRmkmGUsuA",
-      "date": "2022-11-23T07:19:23.559Z",
-      "reactions": {
-        "heart": 0,
-        "smile": 0,
-        "boom": 0,
-        "poo": 0
-      },
-      "title": "Три",
-      "content": "Ладана",
-      "userId": 2
-    },
-    {
-      "id": "TTj4ZdlLo68eJH2R7wnv7",
-      "date": "2022-11-23T07:20:09.148Z",
-      "reactions": {
-        "heart": 0,
-        "smile": 0,
-        "boom": 0,
-        "poo": 0
-      },
-      "title": "Четыре",
-      "content": "Овалам",
-      "userId": 4
-    },
-    {
-      "id": "vjXwvWUb5UGoqC7yi6BWi",
-      "date": "2022-11-23T07:25:15.092Z",
-      "reactions": {
-        "heart": 0,
-        "smile": 0,
-        "boom": 0,
-        "poo": 0
-      },
-      "title": "Пять",
-      "content": "Аиста",
-      "userId": 3
-    },
-    {
-      "id": "I37lmGAJAfi18uSi227ai",
-      "date": "2022-11-23T07:26:16.692Z",
-      "reactions": {
-        "heart": 0,
-        "smile": 0,
-        "boom": 0,
-        "poo": 0
-      },
-      "title": "Шесть",
-      "content": "Валь",
-      "userId": 3
-    },
-    {
-      "id": "Qrdk_FgZir3RXQBYeGwqj",
-      "date": "2022-11-23T07:27:09.046Z",
-      "reactions": {
-        "heart": 0,
-        "smile": 0,
-        "boom": 0,
-        "poo": 0
-      },
-      "title": "Семь",
-      "content": "Попал",
-      "userId": 1
-    },
-    {
-      "id": "I8kFCiNrFlaZ4ft_hY6cc",
-      "date": "2022-11-23T07:53:17.937Z",
-      "reactions": {
-        "heart": 0,
-        "smile": 0,
-        "boom": 0,
-        "poo": 0
-      },
-      "title": "Восемь",
-      "content": "Оклад",
-      "userId": 3
-    },
-    {
-      "id": "WCWhjo8p0LVM0CiZCcpqK",
-      "date": "2022-11-23T07:54:07.789Z",
-      "reactions": {
-        "heart": 0,
-        "smile": 0,
-        "boom": 0,
-        "poo": 0
-      },
-      "title": "9 ",
-      "content": "Влад",
-      "userId": 1
-    },
-    {
-      "id": "J5ATAmu4_AODBi3nzl6Tc",
-      "date": "2022-11-23T08:03:20.260Z",
-      "reactions": {
-        "heart": 0,
-        "smile": 0,
-        "boom": 0,
-        "poo": 0
-      },
-      "title": "10",
-      "content": "Овал",
-      "userId": 2
-    }
-  ],
+      {
+        "id": 211022,
+        "date": "2022-10-29T19:18:00.000Z",
+        "reactions": {
+          "heart": 0,
+          "smile": 0,
+          "boom": 0,
+          "poo": 0
+        },
+        "title": "Flat List",
+        "content": "  A performant interface for rendering basic, flat lists, supporting the most handy features:\n\n\t- Fully cross-platform.\n\t- Optional horizontal mode.\n\t- Configurable viewability callbacks.\n\t- Header support.\n\t- Footer support.\n\t- Separator support.\n\t- Pull to Refresh.\n\t- Scroll loading.\n\t- ScrollToIndex support.\n\t- Multiple column support.\n\n\tIf you need section support, use <SectionList>.",
+        "userId": 4
+      }
+    ],
   "users": [
     {
       "userId": 1,

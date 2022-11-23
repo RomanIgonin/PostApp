@@ -21,24 +21,21 @@ export const ReactionButtons: React.FC<Props> = ({ post }) => {
   const dispatch = useAppDispatch();
 
   const reactionButtons = Object.entries(reactionEmoji).map(([name, emoji]) => {
-    const postId = post.id;
-    // console.log(postId);
     return (
       <View key={nanoid()} style={ReactionButtonStyle.oneButton}>
         <Pressable
           onPress={() => {
-            dispatch(reactionAdded({ postId: postId, reaction: name }));
+            dispatch(reactionAdded({ postId: post.id, reaction: name }));
           }}
         >
           <View style={ReactionButtonStyle.main}>
             <Text>{emoji}</Text>
             <Text style={ReactionButtonStyle.text}>{post.reactions[name]}</Text>
-            {/*<Text style={ReactionButtonStyle.text}>{countReactions}</Text>*/}
           </View>
         </Pressable>
       </View>
     );
   });
 
-  return <View style={{ flexDirection: "row" }}>{reactionButtons}</View>;
+  return <View style={ReactionButtonStyle.commonField}>{reactionButtons}</View>;
 };

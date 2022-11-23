@@ -19,6 +19,8 @@ import {
 import { loadPosts } from "../../../store/action";
 import AddPostButton from "../../components/AddPostButton/index";
 import { useAppDispatch, useAppSelector } from "../../../../../hook";
+import { IP_POSTS } from "../../../../../app/constants";
+import { DeletePostButton } from "../../components/DeletePostButton";
 
 export default function PostsList({ navigation }) {
   const posts = useAppSelector(selectAllPosts);
@@ -53,7 +55,10 @@ export default function PostsList({ navigation }) {
           </View>
           <Text style={PostsListStyle.postTitle}>{item.title}</Text>
           <Text style={PostsListStyle.postContent}>{item.content}</Text>
-          <ReactionButtons post={item} />
+          <View style={{ flexDirection: "row" }}>
+            <ReactionButtons post={item} />
+            <DeletePostButton postId={item.id} />
+          </View>
         </Pressable>
       </View>
     );

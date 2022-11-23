@@ -4,6 +4,7 @@ import axios from "axios";
 import { IP_POSTS } from "../../../app/constants";
 import { RootState } from "../../../app/Store";
 import postService from "../services/PostsService";
+import postsService from "../services/PostsService";
 
 // const dataReactions = {
 //   heart: 0,
@@ -30,7 +31,11 @@ const postsSlice = createSlice({
   reducers: {
     PostAdded: {
       reducer(state: State, action: PayloadAction<object>) {
-        postService.setPost(action.payload);
+        postsService
+          .setPost(action.payload)
+          .then((response) => response.data)
+          .catch((error) => console.error("3_WWW: " + error));
+        // postPost(action.payload);
         // useEffect in PostsList will loadPosts when refreshPost switch on true
         state.refreshPosts = !state.refreshPosts;
       },
@@ -64,6 +69,15 @@ const postsSlice = createSlice({
     //     existingPost.content = content;
     //   }
     // },
+    postDeleted(state: State, action) {
+      const postId = action.payload;
+      console.log("8_WWW: " + postId);
+      postsService
+        .deletePost(postId)
+        .then(() => (state.refreshPosts = !state.refreshPosts))
+        .catch((error) => console.error("4_WWW: " + error));
+      // state.posts.filter((post) => post.id !== action.payload.id);
+    },
     reactionAdded(state, action) {
       // add reaction in state, but not add in server
       const { postId, reaction } = action.payload;
@@ -102,6 +116,6 @@ export const selectPostById = (state: RootState, postId: Number) =>
 export const selectRefreshPosts = (state: RootState) =>
   state.posts.refreshPosts;
 
-export const { PostAdded, PostUpdated, reactionAdded, switchRefreshPosts } =
+export const { PostAdded, PostUpdated, reactionAdded, postDeleted } =
   postsSlice.actions;
 export default postsSlice.reducer;

@@ -21,4 +21,8 @@ export const ReactionButtonStyle = StyleSheet.create({
     marginHorizontal: 5,
     marginVertical: 10,
   },
+  commonField: {
+    flexDirection: "row",
+    marginLeft: 5,
+  },
 });
