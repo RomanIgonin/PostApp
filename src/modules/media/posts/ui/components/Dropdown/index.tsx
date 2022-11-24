@@ -2,19 +2,24 @@ import { FlatList, Pressable, Text, View } from "react-native";
 import React, { useState } from "react";
 import { DropdownStyle } from "../Dropdown/styles";
 
-export default function Dropdown({ data, getUserId }) {
+interface Props {
+  data: any[];
+  getUserId: (value: any) => void;
+}
+
+export const Dropdown: React.FC<Props> = ({ data, getUserId }) => {
   const [openFlatList, setOpenFlatList] = useState(false);
   const [userName, setUserName] = useState("—");
   const [viewDropdown, setViewDropdown] = useState(true);
 
-  const selectName = (item) => {
+  const selectName = (item: any) => {
     getUserId(item.userId);
     setUserName(String(item.name));
     viewList();
   };
 
-  const keyExtractor = (item) => item.userId;
-  const renderItem = ({ item }) => {
+  const keyExtractor = (item: any) => item.userId;
+  const renderItem = ({ item }: any) => {
     if (openFlatList) {
       return (
         <Pressable onPress={() => selectName(item)}>
@@ -77,4 +82,4 @@ export default function Dropdown({ data, getUserId }) {
       </View>
     </View>
   );
-}
+};

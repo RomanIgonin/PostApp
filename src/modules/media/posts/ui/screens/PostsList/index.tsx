@@ -1,4 +1,3 @@
-// Визуальная часть пост листа
 import React, {
   FlatList,
   Pressable,
@@ -17,12 +16,12 @@ import {
   selectRefreshPosts,
 } from "../../../store/index";
 import { loadPosts } from "../../../store/action";
-import AddPostButton from "../../components/AddPostButton/index";
+import { AddPostButton } from "../../components/AddPostButton/index";
 import { useAppDispatch, useAppSelector } from "../../../../../hook";
-import { IP_POSTS } from "../../../../../app/constants";
-import { DeletePostButton } from "../../components/DeletePostButton";
+import { DeletePostButton } from "../../components/DeletePostButton/index";
+import { PostsListProps } from "../../../../../navigation/types";
 
-export default function PostsList({ navigation }) {
+export default function PostsList({ navigation }: PostsListProps) {
   const posts = useAppSelector(selectAllPosts);
   const isPostsLoading = useAppSelector(selectPostsLoad);
   const refreshPosts = useAppSelector(selectRefreshPosts);
@@ -34,19 +33,21 @@ export default function PostsList({ navigation }) {
     }
   }, [refreshPosts]);
 
-  const onPostPressed = (item) => {
+  const onPostPressed = (item: any) => {
     navigation.navigate("SinglePostPage", { postId: item.id });
   };
 
   // Sort posts in reverse chronological order by datetime string
-  // const orderedPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date))
+  const orderedPosts = posts
+    .slice()
+    .sort((a: any, b: any) => b.date.localeCompare(a.date));
 
-  const keyExtractor = (item) => item.id;
+  const keyExtractor = (item: any) => item.id;
 
-  const renderItem = ({ item }) => {
+  const renderItem = ({ item }: any) => {
     return (
       <View style={PostsListStyle.mainTitle}>
-        <Pressable onPress={() => onPostPressed(item)}>
+        <Pressable onPress={(item) => onPostPressed(item)}>
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
@@ -66,10 +67,9 @@ export default function PostsList({ navigation }) {
 
   return (
     <View style={PostsListStyle.main}>
-      <AddPostButton />
+      <AddPostButton navigation={navigation} />
       <FlatList
-        // data={orderedPosts}
-        data={posts}
+        data={orderedPosts}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
       />

@@ -122,7 +122,7 @@ cd iOS/Sample
 rm -f Podfile.lock
 pod install --repo-update
 open Sample.xcworkspace
-<Run app from xcode>
+<Run core from xcode>
 ```
 
 You can omit `--repo-update` to speed up the installation, but watch out as you

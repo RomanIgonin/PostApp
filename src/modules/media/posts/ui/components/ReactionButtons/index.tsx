@@ -1,7 +1,6 @@
 import React from "react";
-import { Button, Pressable, Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import { reactionAdded } from "../../../store/index";
-import { useDispatch } from "react-redux";
 import { ReactionButtonStyle } from "./styles";
 import { nanoid } from "@reduxjs/toolkit";
 import { useAppDispatch } from "../../../../../hook";

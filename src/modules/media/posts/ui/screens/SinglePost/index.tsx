@@ -2,14 +2,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Text, TouchableOpacity, View } from "react-native";
 import { AuthorPost } from "../../../../../users/ui/components/AuthorPost/index";
-import { AntDesign } from "@expo/vector-icons";
 import { SinglePostPageStyle } from "../SinglePost/styles";
 import { PostsListStyle } from "../PostsList/styles";
-import { AddPostStyle } from "../AddPost/styles";
 import { selectPostById } from "../../../store";
 import { ReactionButtons } from "../../components/ReactionButtons";
+import { SinglePostProps } from "../../../../../navigation/types";
 
-export default function SinglePostPage({ route, navigation }) {
+export default function SinglePostPage({ route, navigation }: SinglePostProps) {
   const postId = route.params.postId;
   const post = useSelector((state) => selectPostById(state, postId));
 
@@ -22,7 +21,7 @@ export default function SinglePostPage({ route, navigation }) {
   }
 
   const goToEditPostForm = (post) => {
-    navigation.navigate("EditPostForm", { id: post.id });
+    navigation.navigate("EditPostForm", { postId: post.id });
   };
 
   const onClosePressed = () => {
@@ -34,18 +33,20 @@ export default function SinglePostPage({ route, navigation }) {
       <View style={SinglePostPageStyle.mainTitle}>
         <View style={SinglePostPageStyle.authorField}>
           <AuthorPost userId={post.userId} />
-
-          <TouchableOpacity onPress={() => goToEditPostForm(post)}>
-            <Text style={SinglePostPageStyle.editBtn}>Edit</Text>
+          <TouchableOpacity
+            onPress={() => goToEditPostForm(post)}
+            style={SinglePostPageStyle.editBtn}
+          >
+            <Text style={SinglePostPageStyle.fontButton}>Edit</Text>
           </TouchableOpacity>
         </View>
         <Text style={PostsListStyle.postTitle}>{post.title}</Text>
         <Text style={PostsListStyle.postContent}>{post.content}</Text>
-        <View>
+        <View style={{ flexDirection: "row" }}>
           <ReactionButtons post={post} />
           <View style={SinglePostPageStyle.backBtn}>
             <TouchableOpacity onPress={onClosePressed}>
-              <Text style={AddPostStyle.fontButton}>Back</Text>
+              <Text style={SinglePostPageStyle.fontButton}>Back</Text>
             </TouchableOpacity>
           </View>
         </View>

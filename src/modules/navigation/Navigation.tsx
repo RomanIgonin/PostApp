@@ -2,20 +2,21 @@
 // Стек навигация по приложению. Подключение всех страниц приложения сюда
 import * as React from "react";
 
-import PostsList from "../media/posts/ui/screens/PostsList/index";
-import SinglePostPage from "../media/posts/ui/screens/SinglePost/index";
-import EditPostForm from "../media/posts/ui/screens/EditPost/index";
-import AddPostForm from "../media/posts/ui/screens/AddPost/index";
+import PostsList from "../media/posts/ui/screens/PostsList";
+import SinglePostPage from "../media/posts/ui/screens/SinglePost";
+import EditPostForm from "../media/posts/ui/screens/EditPost";
+import AddPostForm from "../media/posts/ui/screens/AddPost";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
+import { RootStackParamList } from "./types";
 
-const Stack = createNativeStackNavigator();
+const RootStack = createNativeStackNavigator<RootStackParamList>();
 
-export default function Navigate({ navigation }) {
+export default function Navigate() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
+      <RootStack.Navigator
         screenOptions={{
           headerStyle: {
             // backgroundColor: '#000a15',
@@ -27,27 +28,27 @@ export default function Navigate({ navigation }) {
           headerShown: false,
         }}
       >
-        <Stack.Screen
+        <RootStack.Screen
           name="PostsList"
           component={PostsList}
           options={{ title: "" }}
         />
-        <Stack.Screen
+        <RootStack.Screen
           name="SinglePostPage"
           component={SinglePostPage}
           options={{ title: "" }}
         />
-        <Stack.Screen
+        <RootStack.Screen
           name="AddPostForm"
           component={AddPostForm}
           options={{ title: "" }}
         />
-        <Stack.Screen
+        <RootStack.Screen
           name="EditPostForm"
           component={EditPostForm}
           options={{ title: "" }}
         />
-      </Stack.Navigator>
+      </RootStack.Navigator>
     </NavigationContainer>
   );
 }

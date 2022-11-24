@@ -1,9 +1,9 @@
 import { SafeAreaView } from "react-native";
 import { Provider } from "react-redux";
-import store from "./src/modules/app/Store";
+import store from "./src/modules/core/Store";
 import { PostsListStyle } from "./src/modules/media/posts/ui/screens/PostsList/styles";
-import MainStack from "./src/modules/app/Navigat";
-import GeneralStatusBarColor from "./src/modules/app/GeneralStatusBarColor";
+import MainStack from "./src/modules/navigation/Navigation";
+import GeneralStatusBarColor from "./src/modules/core/GeneralStatusBarColor";
 import { loadUsers } from "./src/modules/users/store/actions";
 
 export default function App() {

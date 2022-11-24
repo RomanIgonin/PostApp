@@ -1,17 +1,7 @@
 import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
-import { postPost, loadPosts } from "./action";
-import axios from "axios";
-import { IP_POSTS } from "../../../app/constants";
-import { RootState } from "../../../app/Store";
-import postService from "../services/PostsService";
+import { loadPosts } from "./action";
+import { RootState } from "../../../core/Store";
 import postsService from "../services/PostsService";
-
-// const dataReactions = {
-//   heart: 0,
-//   smile: 0,
-//   boom: 0,
-//   poo: 0,
-// };
 
 type State = {
   posts: any[];
@@ -34,9 +24,7 @@ const postsSlice = createSlice({
         postsService
           .setPost(action.payload)
           .then((response) => response.data)
-          .catch((error) => console.error("3_WWW: " + error));
-        // postPost(action.payload);
-        // useEffect in PostsList will loadPosts when refreshPost switch on true
+          .catch((error) => console.error("PostAdded: " + error));
         state.refreshPosts = !state.refreshPosts;
       },
       prepare(title, content, userId) {
@@ -44,7 +32,6 @@ const postsSlice = createSlice({
           payload: {
             id: nanoid(),
             date: new Date().toISOString(),
-            // reactions: dataReactions,
             reactions: { heart: 0, smile: 0, boom: 0, poo: 0 },
             title,
             content,
@@ -53,35 +40,26 @@ const postsSlice = createSlice({
         };
       },
     },
-    PostUpdated(state: State, action) {
-      const { id, title, content } = action.payload;
-      const existingPost = state.posts.find((post) => post.id === id);
-      if (existingPost) {
-        existingPost.title = title;
-        existingPost.content = content;
-      }
+    postUpdated(state: State, action: PayloadAction<object>) {
+      const post = action.payload;
+      postsService
+        .updatePost(post)
+        .then((response) => response.data)
+        .catch((error) => console.error("postUpdated: " + error));
+      state.refreshPosts = !state.refreshPosts;
     },
-    // PostUpdated(state, action) {
-    //   const { id, title, content } = action.payload;
-    //   const existingPost = state.posts.find((post) => post.id === id);
-    //   if (existingPost) {
-    //     existingPost.title = title;
-    //     existingPost.content = content;
-    //   }
-    // },
-    postDeleted(state: State, action) {
+    postDeleted(state: State, action: PayloadAction<string>) {
       const postId = action.payload;
-      console.log("8_WWW: " + postId);
       postsService
         .deletePost(postId)
-        .then(() => (state.refreshPosts = !state.refreshPosts))
-        .catch((error) => console.error("4_WWW: " + error));
-      // state.posts.filter((post) => post.id !== action.payload.id);
+        .then((response) => response.data)
+        .catch((error) => console.error("postDeleted: " + error));
+      state.refreshPosts = !state.refreshPosts;
     },
-    reactionAdded(state, action) {
+    reactionAdded(state: any, action) {
       // add reaction in state, but not add in server
       const { postId, reaction } = action.payload;
-      const existingPost = state.posts.find((post) => post.id === postId);
+      const existingPost = state.posts.find((post: any) => post.id === postId);
       console.log(existingPost);
       if (existingPost) {
         existingPost.reactions[reaction]++;
@@ -100,22 +78,16 @@ const postsSlice = createSlice({
     builder.addCase(loadPosts.rejected, (state: State) => {
       state.isPostsLoading = false;
     });
-    // builder.addCase(postPost.pending, (state: State) => {
-    //
-    // });
-    // builder.addCase(postPost.fulfilled, (state: State, { payload }) => {
-    //
-    // });
   },
 });
 
 export const selectAllPosts = (state: RootState) => state.posts.posts;
 export const selectPostsLoad = (state: RootState) => state.posts.isPostsLoading;
 export const selectPostById = (state: RootState, postId: Number) =>
-  state.posts.posts.find((post) => post.id === postId);
+  state.posts.posts.find((post: any) => post.id === postId);
 export const selectRefreshPosts = (state: RootState) =>
   state.posts.refreshPosts;
 
-export const { PostAdded, PostUpdated, reactionAdded, postDeleted } =
+export const { PostAdded, postUpdated, reactionAdded, postDeleted } =
   postsSlice.actions;
 export default postsSlice.reducer;

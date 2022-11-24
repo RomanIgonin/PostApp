@@ -14,20 +14,21 @@ import {
 import { AddPostStyle } from "../AddPost/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { PostAdded } from "../../../store/index";
-import Dropdown from "../../components/Dropdown/index";
+import { Dropdown } from "../../components/Dropdown/index";
+import { AddPostProps } from "../../../../../navigation/types";
 
-export default function AddPostForm({ navigation }) {
+export default function AddPostForm({ navigation }: AddPostProps) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [userId, setUserId] = useState(null);
 
-  const users = useSelector((state) => state.users);
+  const users = useSelector((state: any) => state.users);
 
   const dispatch = useDispatch();
 
   const canSave = Boolean(title) && Boolean(content) && Boolean(userId);
 
-  const getUserId = (value) => {
+  const getUserId = (value: any) => {
     // забирает из Dropdown userId
     setUserId(value);
   };

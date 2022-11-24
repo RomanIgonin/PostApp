@@ -4,7 +4,11 @@ import { Text } from "react-native";
 import { StyleSheet } from "react-native";
 import { styleTimeAgo } from "./styles";
 
-export const TimeAgo = ({ timestamp }) => {
+interface Props {
+  timestamp: string;
+}
+
+export const TimeAgo: React.FC<Props> = ({ timestamp }) => {
   let timeAgo = "";
   if (timestamp) {
     const date = parseISO(timestamp);
