@@ -56,14 +56,13 @@ const postsSlice = createSlice({
         .catch((error) => console.error("postDeleted: " + error));
       state.refreshPosts = !state.refreshPosts;
     },
-    reactionAdded(state: any, action) {
-      // add reaction in state, but not add in server
-      const { postId, reaction } = action.payload;
-      const existingPost = state.posts.find((post: any) => post.id === postId);
-      console.log(existingPost);
-      if (existingPost) {
-        existingPost.reactions[reaction]++;
-      }
+    reactionAdded(state: State, action: PayloadAction<any>) {
+      const { postId, reactionsNew } = action.payload;
+      postsService
+        .updateReaction(postId, reactionsNew)
+        .then((response) => response.data)
+        .catch((error) => console.error("postUpdated: " + error));
+      state.refreshPosts = !state.refreshPosts;
     },
   },
   extraReducers: (builder) => {
@@ -83,8 +82,8 @@ const postsSlice = createSlice({
 
 export const selectAllPosts = (state: RootState) => state.posts.posts;
 export const selectPostsLoad = (state: RootState) => state.posts.isPostsLoading;
-export const selectPostById = (state: RootState, postId: Number) =>
-  state.posts.posts.find((post: any) => post.id === postId);
+export const selectPostById = (state: RootState, postId: String) =>
+  state.posts.posts.find((post) => post.id === postId);
 export const selectRefreshPosts = (state: RootState) =>
   state.posts.refreshPosts;
 

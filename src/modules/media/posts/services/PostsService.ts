@@ -29,6 +29,14 @@ class PostsService {
       .then((response) => response.data)
       .catch((error) => console.error("updatePost: " + error));
   }
+  public async updateReaction(postId: string, reactionsNew: object) {
+    return axios
+      .patch(IP_POSTS + "/" + postId, {
+        reactions: reactionsNew,
+      })
+      .then((response) => response.data)
+      .catch((error) => console.error("updateReaction: " + error));
+  }
 }
 
 const postsService = new PostsService();

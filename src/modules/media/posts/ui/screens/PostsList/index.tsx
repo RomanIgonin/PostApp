@@ -1,10 +1,4 @@
-import React, {
-  FlatList,
-  Pressable,
-  SafeAreaView,
-  Text,
-  View,
-} from "react-native";
+import React, { FlatList, Pressable, Text, View } from "react-native";
 import { AuthorPost } from "../../../../../users/ui/components/AuthorPost/index";
 import { PostsListStyle } from "./styles";
 import { useEffect, useState } from "react";
@@ -47,7 +41,7 @@ export default function PostsList({ navigation }: PostsListProps) {
   const renderItem = ({ item }: any) => {
     return (
       <View style={PostsListStyle.mainTitle}>
-        <Pressable onPress={(item) => onPostPressed(item)}>
+        <Pressable onPress={() => onPostPressed(item)}>
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
@@ -67,7 +61,7 @@ export default function PostsList({ navigation }: PostsListProps) {
 
   return (
     <View style={PostsListStyle.main}>
-      <AddPostButton navigation={navigation} />
+      <AddPostButton />
       <FlatList
         data={orderedPosts}
         keyExtractor={keyExtractor}

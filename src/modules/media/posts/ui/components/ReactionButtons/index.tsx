@@ -6,7 +6,7 @@ import { nanoid } from "@reduxjs/toolkit";
 import { useAppDispatch } from "../../../../../hook";
 
 interface Props {
-  post: object;
+  post: any;
 }
 
 const reactionEmoji = {
@@ -24,7 +24,10 @@ export const ReactionButtons: React.FC<Props> = ({ post }) => {
       <View key={nanoid()} style={ReactionButtonStyle.oneButton}>
         <Pressable
           onPress={() => {
-            dispatch(reactionAdded({ postId: post.id, reaction: name }));
+            post.reactions[name]++;
+            dispatch(
+              reactionAdded({ postId: post.id, reactionsNew: post.reactions })
+            );
           }}
         >
           <View style={ReactionButtonStyle.main}>

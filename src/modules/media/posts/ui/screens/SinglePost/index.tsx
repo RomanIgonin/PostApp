@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Text, TouchableOpacity, View } from "react-native";
 import { AuthorPost } from "../../../../../users/ui/components/AuthorPost/index";
 import { SinglePostPageStyle } from "../SinglePost/styles";
@@ -7,11 +6,11 @@ import { PostsListStyle } from "../PostsList/styles";
 import { selectPostById } from "../../../store";
 import { ReactionButtons } from "../../components/ReactionButtons";
 import { SinglePostProps } from "../../../../../navigation/types";
+import { useAppSelector } from "../../../../../hook";
 
 export default function SinglePostPage({ route, navigation }: SinglePostProps) {
   const postId = route.params.postId;
-  const post = useSelector((state) => selectPostById(state, postId));
-
+  const post: any = useAppSelector((state) => selectPostById(state, postId));
   if (!post) {
     return (
       <View>
@@ -20,7 +19,7 @@ export default function SinglePostPage({ route, navigation }: SinglePostProps) {
     );
   }
 
-  const goToEditPostForm = (post) => {
+  const goToEditPostForm = (post: any) => {
     navigation.navigate("EditPostForm", { postId: post.id });
   };
 
