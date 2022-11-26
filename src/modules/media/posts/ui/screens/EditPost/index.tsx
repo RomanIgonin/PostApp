@@ -16,7 +16,7 @@ import { EditPostProps } from "../../../../../navigation/types";
 
 export default function EditPostForm({ route, navigation }: EditPostProps) {
   const postId = route.params.postId;
-  const post = useAppSelector((state) => selectPostById(state, postId));
+  const post: any = useAppSelector((state) => selectPostById(state, postId));
 
   const [title, setTitle] = useState(post.title);
   const [content, setContent] = useState(post.content);

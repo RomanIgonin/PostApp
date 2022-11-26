@@ -72,7 +72,6 @@ const postsSlice = createSlice({
     builder.addCase(loadPosts.fulfilled, (state: State, { payload }) => {
       state.posts = payload;
       state.isPostsLoading = false;
-      // state.refreshPosts = false;
     });
     builder.addCase(loadPosts.rejected, (state: State) => {
       state.isPostsLoading = false;
@@ -83,10 +82,11 @@ const postsSlice = createSlice({
 export const selectAllPosts = (state: RootState) => state.posts.posts;
 export const selectPostsLoad = (state: RootState) => state.posts.isPostsLoading;
 export const selectPostById = (state: RootState, postId: String) =>
-  state.posts.posts.find((post) => post.id === postId);
+  state.posts.posts.find((post: any) => post.id === postId);
 export const selectRefreshPosts = (state: RootState) =>
   state.posts.refreshPosts;
 
 export const { PostAdded, postUpdated, reactionAdded, postDeleted } =
   postsSlice.actions;
+
 export default postsSlice.reducer;

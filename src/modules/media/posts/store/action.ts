@@ -7,6 +7,6 @@ export const loadPosts = createAsyncThunk(`${PREFIX}/loadPosts`, async () => {
   return await postsService.getPosts();
 });
 
-export const postPost = createAsyncThunk(`${PREFIX}/postPost`, async () => {
-  return await postsService.setPost();
-});
+// export const postPost = createAsyncThunk(`${PREFIX}/postPost`, async () => {
+//   return await postsService.setPost();
+// });
