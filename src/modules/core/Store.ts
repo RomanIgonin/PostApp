@@ -1,9 +1,11 @@
-// создает экземпляр магазина Redux
-import { configureStore, MiddlewareArray } from "@reduxjs/toolkit";
-// import additionalMiddleware from "additional-middleware";
-// import logger from "redux-logger";
+import { configureStore } from "@reduxjs/toolkit";
 import postsReducer from "../media/posts/store/index";
 import usersReducer from "../users/store/index";
+
+// const redux = require("redux");
+// const applyMiddleware = redux.applyMiddleware;
+// const reduxLogger = require("redux-logger");
+// const logger = reduxLogger.createLogger();
 
 const store = configureStore({
   reducer: {
