@@ -1,26 +1,27 @@
 import axios from "axios";
 import { IP_POSTS } from "../../../core/constants";
+import { Post } from "../store";
 
 class PostsService {
-  public async getPosts() {
+  public async getPostService() {
     return axios
       .get(IP_POSTS)
       .then((response) => response.data)
-      .catch((error) => console.log("getPosts: " + error));
+      .catch((error) => console.error("getPosts: " + error));
   }
-  public async setPost(data: object) {
+  public async setPostService(post: Post) {
     return axios
-      .post(IP_POSTS, data)
+      .post(IP_POSTS, post)
       .then((response) => response.data)
-      .catch((error) => console.log("setPost: " + error));
+      .catch((error) => console.error("setPost: " + error));
   }
-  public async deletePost(postId: string) {
+  public async deletePostService(postId: string) {
     return axios
       .delete(IP_POSTS + "/" + postId)
       .then((response) => response.data)
       .catch((error) => console.error("deletePost: " + error));
   }
-  public async updatePost(post: any) {
+  public async updatePostService(post: any) {
     return axios
       .patch(IP_POSTS + "/" + post.postId, {
         title: post.title,
@@ -29,7 +30,7 @@ class PostsService {
       .then((response) => response.data)
       .catch((error) => console.error("updatePost: " + error));
   }
-  public async updateReaction(postId: string, reactionsNew: object) {
+  public async updateReactionService(postId: string, reactionsNew: object) {
     return axios
       .patch(IP_POSTS + "/" + postId, {
         reactions: reactionsNew,

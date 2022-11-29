@@ -4,26 +4,32 @@ import { PostsListStyle } from "./styles";
 import { useEffect, useState } from "react";
 import { TimeAgo } from "../../components/TimeAgo/index";
 import { ReactionButtons } from "../../components/ReactionButtons/index";
-import {
-  selectAllPosts,
-  selectPostsLoad,
-  selectRefreshPosts,
-} from "../../../store/index";
-import { loadPosts } from "../../../store/action";
+import { postsActions } from "../../../store/index";
+import { getPosts } from "../../../store/action";
 import { AddPostButton } from "../../components/AddPostButton/index";
 import { useAppDispatch, useAppSelector } from "../../../../../hook";
 import { DeletePostButton } from "../../components/DeletePostButton/index";
 import { PostsListProps } from "../../../../../navigation/types";
+import { useSelector } from "react-redux";
+import {
+  isPostsLoadingSelector,
+  postsListSelector,
+  refreshPostsSelector,
+} from "../../../store/selectors";
+import { usersActions } from "../../../../../users/store";
 
 export default function PostsList({ navigation }: PostsListProps) {
-  const posts = useAppSelector(selectAllPosts);
-  const isPostsLoading = useAppSelector(selectPostsLoad);
-  const refreshPosts = useAppSelector(selectRefreshPosts);
+  // const posts = useAppSelector(selectAllPosts);
+  // const isPostsLoading = useAppSelector(selectPostsLoad);
+  // const refreshPosts = useAppSelector(selectRefreshPosts);
+  const posts = useSelector(postsListSelector);
+  const isPostsLoading = useSelector(isPostsLoadingSelector);
+  const refreshPosts = useSelector(refreshPostsSelector);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (isPostsLoading === false) {
-      dispatch(loadPosts());
+      dispatch(getPosts());
     }
   }, [refreshPosts]);
 

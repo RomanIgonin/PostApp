@@ -4,7 +4,7 @@ import { DropdownStyle } from "../Dropdown/styles";
 
 interface Props {
   data: any[];
-  getUserId: (value: any) => void;
+  getUserId: (value: number) => void;
 }
 
 export const Dropdown: React.FC<Props> = ({ data, getUserId }) => {

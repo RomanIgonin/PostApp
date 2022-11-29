@@ -9,11 +9,13 @@ import {
   View,
 } from "react-native";
 import { AddPostStyle } from "../AddPost/styles";
-import { PostAdded } from "../../../store/index";
+// import { PostAdded } from "../../../store/index";
 import { Dropdown } from "../../components/Dropdown/index";
 import { AddPostProps } from "../../../../../navigation/types";
 import { useAppDispatch, useAppSelector } from "../../../../../hook";
 import { usersSelector } from "../../../../../users/store/selectors";
+import { setPost } from "../../../store/action";
+import { nanoid } from "@reduxjs/toolkit";
 
 const DismissKeyboard = ({ children }: any) => (
   <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -24,7 +26,7 @@ const DismissKeyboard = ({ children }: any) => (
 export default function AddPostForm({ navigation }: AddPostProps) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [userId, setUserId] = useState(null);
+  const [userId, setUserId] = useState(0);
 
   const users = useAppSelector(usersSelector);
   const dispatch = useAppDispatch();
@@ -38,7 +40,16 @@ export default function AddPostForm({ navigation }: AddPostProps) {
 
   const onSavePostPressed = () => {
     if (canSave) {
-      dispatch(PostAdded(title, content, userId));
+      // dispatch(PostAdded(title, content, userId));
+      const post = {
+        id: nanoid(),
+        date: new Date().toISOString(),
+        reactions: { heart: 0, smile: 0, boom: 0, poo: 0 },
+        title,
+        content,
+        userId,
+      };
+      dispatch(setPost(post));
       setTitle("");
       setContent("");
       onClosePressed();

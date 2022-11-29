@@ -1,12 +1,19 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, nanoid } from "@reduxjs/toolkit";
 import postsService from "../services/PostsService";
+import { Post, PostsState } from "./index";
 
 const PREFIX = "posts";
 
-export const loadPosts = createAsyncThunk(`${PREFIX}/loadPosts`, async () => {
-  return await postsService.getPosts();
-});
+export const getPosts = createAsyncThunk<Post, undefined>(
+  `${PREFIX}/loadPosts`,
+  async () => {
+    return await postsService.getPostService();
+  }
+);
 
-// export const postPost = createAsyncThunk(`${PREFIX}/postPost`, async () => {
-//   return await postsService.setPost();
-// });
+export const setPost = createAsyncThunk<Post, Post>(
+  `${PREFIX}/setPost`,
+  async (post) => {
+    return await postsService.setPostService(post);
+  }
+);

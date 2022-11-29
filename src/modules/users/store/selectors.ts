@@ -8,8 +8,7 @@ export const usersSelector = createSelector(
   (state) => state.users
 );
 
-// export const selectUserById = createSelector(
-//   (state: RootState, userId: string) =>
+// export const selectedUserSelector = createSelector(
+//   usersModuleSelector,
+//   (state) => state.selectedUser
 // );
-// export const selectUserById = (state: RootState, userId: String) =>
-//   state.users.users.find((user: any) => user.userId === userId);

@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, View } from "react-native";
 import { AuthorPost } from "../../../../../users/ui/components/AuthorPost/index";
 import { SinglePostPageStyle } from "../SinglePost/styles";
 import { PostsListStyle } from "../PostsList/styles";
-import { selectPostById } from "../../../store";
+// import { selectPostById } from "../../../store";
 import { ReactionButtons } from "../../components/ReactionButtons";
 import { SinglePostProps } from "../../../../../navigation/types";
 import { useAppSelector } from "../../../../../hook";

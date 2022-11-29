@@ -8,7 +8,7 @@
     "server": "json-server --host 192.168.8.112 -p 3001 src/modules/core/api/db.json",
     "server2": "json-server --host 192.168.8.112 -p 3001 --delay 2000 src/modules/core/api/db.json",
     "android": "react-native run-android",
-    "ios": "react-native run-ios",
+    "ios": "react-native run-ios --simulator='iPhone 6 (12.4)'",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },

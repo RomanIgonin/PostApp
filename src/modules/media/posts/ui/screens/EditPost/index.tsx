@@ -15,11 +15,16 @@ import { useAppDispatch, useAppSelector } from "../../../../../hook";
 import { EditPostProps } from "../../../../../navigation/types";
 
 export default function EditPostForm({ route, navigation }: EditPostProps) {
-  const postId = route.params.postId;
-  const post: any = useAppSelector((state) => selectPostById(state, postId));
+  // const postId = route.params.postId;
+  // const post: any = useAppSelector((state) => selectPostById(state, postId));
+  // const selectedPost = async () => {
+  //   return await useSelector(selectedPostSelector);
+  // };
+  const selectedPost = useSelector(selectedPostSelector);
+  if (selectedPost === null) return <Text>Error, post not found</Text>;
 
-  const [title, setTitle] = useState(post.title);
-  const [content, setContent] = useState(post.content);
+  const [title, setTitle] = useState(selectedPost.title);
+  const [content, setContent] = useState(selectedPost.content);
 
   const dispatch = useAppDispatch();
 
