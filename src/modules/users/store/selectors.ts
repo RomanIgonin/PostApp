@@ -7,8 +7,3 @@ export const usersSelector = createSelector(
   usersModuleSelector,
   (state) => state.users
 );
-
-// export const selectedUserSelector = createSelector(
-//   usersModuleSelector,
-//   (state) => state.selectedUser
-// );

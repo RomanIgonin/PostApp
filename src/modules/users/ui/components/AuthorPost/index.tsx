@@ -12,7 +12,6 @@ export const AuthorPost: React.FC<Props> = ({ userId }) => {
   const users = useSelector(usersSelector);
   const user = users.find((item) => item.userId === userId);
   if (user === undefined) return <Text>Error, user is undefined</Text>;
-  // console.log(user);
 
   return <Text style={AuthorPostStyle.main}>{user.name}</Text>;
 };

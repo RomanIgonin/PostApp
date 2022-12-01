@@ -8,9 +8,8 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { AddPostStyle } from "../AddPost/styles";
-// import { PostAdded } from "../../../store/index";
-import { Dropdown } from "../../components/Dropdown/index";
+import { AddPostStyle } from "./styles";
+import { Dropdown } from "../../components/Dropdown/";
 import { AddPostProps } from "../../../../../navigation/types";
 import { useAppDispatch, useAppSelector } from "../../../../../hook";
 import { usersSelector } from "../../../../../users/store/selectors";
@@ -38,18 +37,20 @@ export default function AddPostForm({ navigation }: AddPostProps) {
     setUserId(value);
   };
 
+  const createNewPost = () => {
+    return {
+      id: nanoid(),
+      date: new Date().toISOString(),
+      reactions: { heart: 0, smile: 0, boom: 0, poo: 0 },
+      title,
+      content,
+      userId,
+    };
+  };
+
   const onSavePostPressed = () => {
     if (canSave) {
-      // dispatch(PostAdded(title, content, userId));
-      const post = {
-        id: nanoid(),
-        date: new Date().toISOString(),
-        reactions: { heart: 0, smile: 0, boom: 0, poo: 0 },
-        title,
-        content,
-        userId,
-      };
-      dispatch(setPost(post));
+      dispatch(setPost(createNewPost()));
       setTitle("");
       setContent("");
       onClosePressed();

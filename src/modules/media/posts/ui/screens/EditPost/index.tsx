@@ -9,19 +9,16 @@ import {
 } from "react-native";
 import { useState } from "react";
 import { AddPostStyle } from "../AddPost/styles";
-import { PostAdded, postUpdated, selectPostById } from "../../../store/index";
-import { EditPostFormStyle } from "../EditPost/styles";
-import { useAppDispatch, useAppSelector } from "../../../../../hook";
+import { EditPostFormStyle } from "./styles";
+import { useAppDispatch } from "../../../../../hook";
 import { EditPostProps } from "../../../../../navigation/types";
+import { useSelector } from "react-redux";
+import { selectedPostSelector } from "../../../store/selectors";
+import { patchPost } from "../../../store/action";
 
-export default function EditPostForm({ route, navigation }: EditPostProps) {
-  // const postId = route.params.postId;
-  // const post: any = useAppSelector((state) => selectPostById(state, postId));
-  // const selectedPost = async () => {
-  //   return await useSelector(selectedPostSelector);
-  // };
+export default function EditPostForm({ navigation }: EditPostProps) {
   const selectedPost = useSelector(selectedPostSelector);
-  if (selectedPost === null) return <Text>Error, post not found</Text>;
+  if (selectedPost === null) return <Text>Error 3, post not found</Text>;
 
   const [title, setTitle] = useState(selectedPost.title);
   const [content, setContent] = useState(selectedPost.content);
@@ -30,13 +27,8 @@ export default function EditPostForm({ route, navigation }: EditPostProps) {
 
   const onSavePostPressed = () => {
     if (title && content) {
-      dispatch(
-        postUpdated({
-          postId,
-          title,
-          content,
-        })
-      );
+      const editPost = { postId: selectedPost.id, title, content };
+      dispatch(patchPost(editPost));
       navigation.goBack();
     } else {
       Alert.alert("Enter the title & content");
@@ -72,7 +64,7 @@ export default function EditPostForm({ route, navigation }: EditPostProps) {
           />
         </View>
 
-        <View style={{ flexDirection: "row" }}>
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <View style={EditPostFormStyle.closeBtn}>
             <TouchableOpacity onPress={onClosePressed}>
               <Text style={AddPostStyle.fontButton}>Close</Text>

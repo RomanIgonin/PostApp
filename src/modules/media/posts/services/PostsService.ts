@@ -1,6 +1,6 @@
 import axios from "axios";
 import { IP_POSTS } from "../../../core/constants";
-import { Post } from "../store";
+import { Post, editPost, newReaction } from "../store";
 
 class PostsService {
   public async getPostService() {
@@ -17,23 +17,23 @@ class PostsService {
   }
   public async deletePostService(postId: string) {
     return axios
-      .delete(IP_POSTS + "/" + postId)
+      .delete(`${IP_POSTS}/${postId}`)
       .then((response) => response.data)
       .catch((error) => console.error("deletePost: " + error));
   }
-  public async updatePostService(post: any) {
+  public async patchPostService(editPost: editPost) {
     return axios
-      .patch(IP_POSTS + "/" + post.postId, {
-        title: post.title,
-        content: post.content,
+      .patch(`${IP_POSTS}/${editPost.postId}`, {
+        title: editPost.title,
+        content: editPost.content,
       })
       .then((response) => response.data)
       .catch((error) => console.error("updatePost: " + error));
   }
-  public async updateReactionService(postId: string, reactionsNew: object) {
+  public async patchReactionService(newReaction: newReaction) {
     return axios
-      .patch(IP_POSTS + "/" + postId, {
-        reactions: reactionsNew,
+      .patch(`${IP_POSTS}/${newReaction.postId}`, {
+        reactions: newReaction.reactionsNew,
       })
       .then((response) => response.data)
       .catch((error) => console.error("updateReaction: " + error));

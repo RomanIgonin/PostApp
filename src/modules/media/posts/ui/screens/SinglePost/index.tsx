@@ -1,22 +1,26 @@
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import { AuthorPost } from "../../../../../users/ui/components/AuthorPost/index";
-import { SinglePostPageStyle } from "../SinglePost/styles";
+import { AuthorPost } from "../../../../../users/ui/components/AuthorPost/";
+import { SinglePostPageStyle } from "./styles";
 import { PostsListStyle } from "../PostsList/styles";
-// import { selectPostById } from "../../../store";
 import { ReactionButtons } from "../../components/ReactionButtons";
 import { SinglePostProps } from "../../../../../navigation/types";
-import { useAppSelector } from "../../../../../hook";
+import { useSelector } from "react-redux";
+import { selectedPostSelector } from "../../../store/selectors";
 
-export default function SinglePostPage({ route, navigation }: SinglePostProps) {
-  const postId = route.params.postId;
-  const post: any = useAppSelector((state) => selectPostById(state, postId));
-  if (!post) {
-    return (
-      <View>
-        <Text>Post not found!</Text>
-      </View>
-    );
+export default function SinglePostPage({ navigation }: SinglePostProps) {
+  const selectedPost = useSelector(selectedPostSelector);
+
+  const goToEditPostForm = () => {
+    navigation.navigate("EditPostForm");
+  };
+
+  const onClosePressed = () => {
+    navigation.goBack();
+  };
+
+  if (!selectedPost) {
+    return <Text>Post not found!</Text>;
   }
 
   const goToEditPostForm = (post: any) => {
